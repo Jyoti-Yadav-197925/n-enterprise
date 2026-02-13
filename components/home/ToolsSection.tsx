@@ -75,7 +75,6 @@ const EMICalculator = () => {
       
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-6">
-          {/* Loan Type Selector */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Loan Type</label>
             <div className="flex flex-wrap gap-2">
@@ -329,11 +328,9 @@ const InterestRateCompare = () => {
   )
 }
 
-// Document Checklist Component - PROFESSIONAL FORMAT
-
+// Document Checklist Component - FULLY FIXED VERSION
 const DocumentChecklist = () => {
   const [activeTab, setActiveTab] = useState('salaried')
-  const [expandedDoc, setExpandedDoc] = useState<string | null>(null)
 
   const documentSections = {
     salaried: {
@@ -544,7 +541,7 @@ const DocumentChecklist = () => {
           transition={{ duration: 0.3 }}
           className="space-y-6"
         >
-          {/* Eligibility Summary - FIXED VERSION */}
+          {/* Eligibility Summary - 100% FIXED WITH TYPE ASSERTION */}
           <div className={`bg-${currentSection.color}-50 p-5 rounded-2xl border border-${currentSection.color}-200`}>
             <h4 className="font-bold text-[#2F4F3E] mb-3 flex items-center gap-2">
               <Target size={18} className="text-[#C9A44C]" />
@@ -565,9 +562,8 @@ const DocumentChecklist = () => {
                 </p>
                 <p className="font-bold text-[#2F4F3E]">
                   {activeTab === 'property' 
-                    ? currentSection.eligibility.ltv 
-                    : currentSection.eligibility.income
-                  }
+                    ? (currentSection.eligibility as any).ltv 
+                    : (currentSection.eligibility as any).income}
                 </p>
               </div>
               <div className="bg-white p-3 rounded-xl shadow-sm">
@@ -576,15 +572,14 @@ const DocumentChecklist = () => {
                 </p>
                 <p className="font-bold text-[#2F4F3E]">
                   {activeTab === 'property' 
-                    ? currentSection.eligibility.propertyAge 
-                    : currentSection.eligibility.experience
-                  }
+                    ? (currentSection.eligibility as any).propertyAge 
+                    : (currentSection.eligibility as any).experience}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Documents Grid - REST OF THE CODE REMAINS SAME */}
+          {/* Documents Grid */}
           <div className="grid md:grid-cols-2 gap-4">
             {currentSection.documents.map((section, idx) => (
               <motion.div
@@ -726,7 +721,7 @@ const LoanEligibility = () => {
 
   const calculateEligibility = () => {
     const maxEMI = (monthlyIncome * 0.5) - existingEMI
-    const amount = maxEMI * 12 * 5 // 5 year tenure assumption
+    const amount = maxEMI * 12 * 5
     setEligibleAmount(Math.max(0, Math.round(amount / 100000) * 100000))
     setShowDetailed(true)
   }
@@ -894,7 +889,6 @@ export default function ToolsSection() {
 
   return (
     <section id="tools" className="py-20 bg-[#F6F3E8] relative overflow-hidden">
-      {/* Animated Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-[#C9A44C]/5 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#2F4F3E]/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
@@ -909,7 +903,6 @@ export default function ToolsSection() {
           className="mb-12"
         />
 
-        {/* Tool Navigation with Animation */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tools.map((tool, idx) => (
             <motion.button
@@ -939,7 +932,6 @@ export default function ToolsSection() {
           ))}
         </div>
 
-        {/* Active Tool with Animation */}
         <div className="max-w-5xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
@@ -957,7 +949,6 @@ export default function ToolsSection() {
           </AnimatePresence>
         </div>
 
-        {/* Why Choose Us - Enhanced */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1010,7 +1001,6 @@ export default function ToolsSection() {
           ))}
         </motion.div>
 
-        {/* CTA Banner */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
