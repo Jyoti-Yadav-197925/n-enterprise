@@ -330,6 +330,7 @@ const InterestRateCompare = () => {
 }
 
 // Document Checklist Component - PROFESSIONAL FORMAT
+
 const DocumentChecklist = () => {
   const [activeTab, setActiveTab] = useState('salaried')
   const [expandedDoc, setExpandedDoc] = useState<string | null>(null)
@@ -524,19 +525,12 @@ const DocumentChecklist = () => {
             whileTap={{ scale: 0.95 }}
             className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${
               activeTab === key
-                ? `bg-[#C9A44C] text-[#2F4F3E] shadow-lg`
+                ? 'bg-[#C9A44C] text-[#2F4F3E] shadow-lg'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
             <section.icon size={16} />
             {section.title}
-            {activeTab === key && (
-              <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="w-2 h-2 bg-[#2F4F3E] rounded-full"
-              />
-            )}
           </motion.button>
         ))}
       </div>
@@ -550,7 +544,7 @@ const DocumentChecklist = () => {
           transition={{ duration: 0.3 }}
           className="space-y-6"
         >
-          {/* Eligibility Summary */}
+          {/* Eligibility Summary - FIXED VERSION */}
           <div className={`bg-${currentSection.color}-50 p-5 rounded-2xl border border-${currentSection.color}-200`}>
             <h4 className="font-bold text-[#2F4F3E] mb-3 flex items-center gap-2">
               <Target size={18} className="text-[#C9A44C]" />
@@ -566,17 +560,31 @@ const DocumentChecklist = () => {
                 <p className="font-bold text-[#2F4F3E]">{currentSection.eligibility.age}</p>
               </div>
               <div className="bg-white p-3 rounded-xl shadow-sm">
-                <p className="text-xs text-gray-500 mb-1">Income Required</p>
-                <p className="font-bold text-[#2F4F3E]">{currentSection.eligibility.income || currentSection.eligibility.ltv}</p>
+                <p className="text-xs text-gray-500 mb-1">
+                  {activeTab === 'property' ? 'LTV Ratio' : 'Income Required'}
+                </p>
+                <p className="font-bold text-[#2F4F3E]">
+                  {activeTab === 'property' 
+                    ? currentSection.eligibility.ltv 
+                    : currentSection.eligibility.income
+                  }
+                </p>
               </div>
               <div className="bg-white p-3 rounded-xl shadow-sm">
-                <p className="text-xs text-gray-500 mb-1">Experience</p>
-                <p className="font-bold text-[#2F4F3E]">{currentSection.eligibility.experience || currentSection.eligibility.propertyAge}</p>
+                <p className="text-xs text-gray-500 mb-1">
+                  {activeTab === 'property' ? 'Property Age' : 'Experience'}
+                </p>
+                <p className="font-bold text-[#2F4F3E]">
+                  {activeTab === 'property' 
+                    ? currentSection.eligibility.propertyAge 
+                    : currentSection.eligibility.experience
+                  }
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Documents Grid */}
+          {/* Documents Grid - REST OF THE CODE REMAINS SAME */}
           <div className="grid md:grid-cols-2 gap-4">
             {currentSection.documents.map((section, idx) => (
               <motion.div
@@ -646,10 +654,6 @@ const DocumentChecklist = () => {
                   <li className="flex items-center gap-2">
                     <span className="w-1 h-1 bg-[#C9A44C] rounded-full" />
                     Additional documents may be requested based on profile
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-[#C9A44C] rounded-full" />
-                    Our team will guide you through complete documentation
                   </li>
                 </ul>
               </div>
