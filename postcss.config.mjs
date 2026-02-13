@@ -1,3 +1,10 @@
+// export default {
+//   plugins: {
+//     "@tailwindcss/postcss": {},
+//   },
+// };
+
+// postcss.config.mjs
 const config = {
   plugins: {
     "@tailwindcss/postcss": {},
