@@ -78,7 +78,7 @@ export default function Hero() {
             {/* Your existing hero content */}
             <div className="inline-flex items-center gap-3 bg-primary-dark/90 backdrop-blur-sm text-cream px-5 py-2.5 rounded-full mb-8 shadow-lg border border-white/10">
               <Shield size={16} className="text-accent" />
-              <span className="text-sm font-medium tracking-wide">TRUSTED BY 500+ CLIENTS</span>
+              <span className="text-sm font-medium tracking-wide">TRUSTED BY 250+ CLIENTS</span>
               <span className="w-1.5 h-1.5 bg-accent rounded-full" />
               <span className="text-sm font-medium">PAN INDIA</span>
             </div>
@@ -161,9 +161,9 @@ export default function Hero() {
 
               <div className="space-y-6 mb-8">
                 {[
-                  { icon: Users, label: 'Happy Clients', value: '500+' },
-                  { icon: TrendingUp, label: 'Loans Sanctioned', value: '₹250Cr+' },
-                  { icon: MapPin, label: 'Projects Completed', value: '120+' },
+                  { icon: Users, label: 'Happy Clients', value: '125+' },
+                  { icon: TrendingUp, label: 'Loans Sanctioned', value: '₹22Cr+' },
+                  { icon: MapPin, label: 'Projects Completed', value: '10+' },
                 ].map((stat, i) => (
                   <motion.div 
                     key={i} 

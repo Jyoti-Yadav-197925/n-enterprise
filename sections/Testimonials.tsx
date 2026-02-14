@@ -32,7 +32,7 @@ export default function Testimonials() {
         <SectionTitle
           subtitle="Client Testimonials"
           title="What Our Clients Say"
-          description="Trusted by 500+ happy clients across Mumbai, Vasai, Virar, Boisar & Palghar"
+          description="Trusted by 250+ happy clients across Mumbai, Vasai, Virar, Boisar & Palghar"
           className="mb-16"
         />
 

@@ -25,9 +25,9 @@ export const siteConfig = {
 
 export const stats = [
   { id: 1, number: '15+', label: 'Years of Excellence', suffix: 'Since 2008', icon: 'award' },
-  { id: 2, number: '500+', label: 'Happy Clients', suffix: 'Trusted', icon: 'users' },
-  { id: 3, number: '₹250Cr+', label: 'Loans Sanctioned', suffix: 'Value', icon: 'trending' },
-  { id: 4, number: '120+', label: 'Projects Completed', suffix: 'Success', icon: 'map' },
+  { id: 2, number: '250+', label: 'Happy Clients', suffix: 'Trusted', icon: 'users' },
+  { id: 3, number: '₹22Cr+', label: 'Loans Sanctioned', suffix: 'Value', icon: 'trending' },
+  { id: 4, number: '10+', label: 'Projects Completed', suffix: 'Success', icon: 'map' },
 ]
 
 export const testimonials = [

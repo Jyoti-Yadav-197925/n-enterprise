@@ -69,6 +69,8 @@ export default function LoanServices() {
           className="mb-16"
         />
 
+        
+
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           {[
             { icon: TrendingUp, title: 'Best Interest Rates', desc: 'Tied up with 25+ banks & NBFCs' },
