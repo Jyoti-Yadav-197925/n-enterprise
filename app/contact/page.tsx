@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'  // ← Make sure useEffect is imported
 import { useSearchParams } from 'next/navigation'
 import { Phone, Mail, MapPin, Send, User, MessageSquare, CheckCircle } from 'lucide-react'
 import Image from 'next/image'
@@ -21,8 +21,8 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  // Pre-fill message from URL params
-  useState(() => {
+  // ✅ FIXED: Use useEffect instead of useState
+  useEffect(() => {
     const service = searchParams.get('service')
     const property = searchParams.get('property')
     const source = searchParams.get('source')
@@ -45,13 +45,12 @@ export default function ContactPage() {
     }
     
     setFormData(prev => ({ ...prev, message }))
-  }, [])
+  }, [searchParams]) // ← Correct dependency array
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500))
     
     console.log('Form submitted:', formData)
@@ -63,6 +62,7 @@ export default function ContactPage() {
       setFormData({ name: '', phone: '', email: '', message: '' })
     }, 5000)
   }
+
 
   return (
     <main className="bg-[#F6F3E8] min-h-screen">
