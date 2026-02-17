@@ -137,17 +137,17 @@ const navItems = [
         items: [
           { 
             name: 'Free Valuation', 
-            href: '/contact?service=valuation',  // ← UPDATED
+            href: '/contact',  
             icon: Scale
           },
           { 
             name: 'List Your Property', 
-            href: '/contact?service=list',  // ← UPDATED
+            href: '/contact',  
             icon: Users
           },
           { 
             name: 'Legal Assistance', 
-            href: '/contact?service=legal',  // ← UPDATED
+            href: '/contact',  
             icon: Shield
           },
         ]
@@ -255,17 +255,17 @@ const navItems = [
           { 
             icon: FileText, 
             name: 'Document Checklist', 
-            href: '/tools#document-checklist',  // ← UPDATED
+            href: '/tools#document-checklist',  
           },
           { 
             icon: TrendingUp, 
             name: 'CIBIL Score Guide', 
-            href: '/loan#cibil-guide',  // ← KEEPS POINTING TO LOAN PAGE
+            href: '/loan#cibil-guide',  
           },
           { 
             icon: Shield, 
             name: 'Property Valuation', 
-            href: '/contact?service=valuation',  // ← UPDATED
+            href: '/contact'
           },
         ]
       }
@@ -273,7 +273,7 @@ const navItems = [
   },
   { 
     name: 'Contact', 
-    href: '/contact'  // ← CHANGED
+    href: '/contact' 
   },
 ]
 

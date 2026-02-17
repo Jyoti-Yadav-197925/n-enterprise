@@ -1,19 +1,13 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 import { Phone, Mail, MapPin, CheckCircle } from 'lucide-react'
 
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Container from '@/components/common/Container'
 
-// Force dynamic rendering - THIS IS KEY!
-export const dynamic = 'force-dynamic'
-
-// Separate component for the form that uses useSearchParams
-function ContactForm() {
-  const searchParams = useSearchParams()
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -22,47 +16,6 @@ function ContactForm() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    // Get parameters safely
-    const service = searchParams?.get('service')
-    const property = searchParams?.get('property')
-    const source = searchParams?.get('source')
-    
-    let message = ''
-    
-    if (service) {
-      const serviceMap: Record<string, string> = {
-        'home-loan': 'I am interested in Home Loan',
-        'project-loan': 'I am interested in Project Loan',
-        'mortgage-loan': 'I am interested in Mortgage Loan',
-        'loan-against-property': 'I am interested in Loan Against Property',
-        'business-loan': 'I am interested in Business Loan',
-        'vehicle-loan': 'I am interested in Vehicle Loan',
-        'redevelopment': 'I am interested in Redevelopment',
-        'stalled': 'I am interested in Stalled Project',
-        'new': 'I am interested in New Construction',
-        'construction': 'I am interested in Construction',
-        'buy': 'I am interested in Buying Property',
-        'sell': 'I am interested in Selling Property',
-        'rent': 'I am interested in Renting Property',
-        'valuation': 'I need property valuation',
-        'list': 'I want to list my property',
-        'legal': 'I need legal assistance'
-      }
-      message = serviceMap[service] || `I am interested in ${service}`
-    } else if (property) {
-      message = `I am interested in Property ID: ${property}`
-    } else if (source === 'testimonial') {
-      message = 'I would like to share my experience'
-    } else if (source === 'cibil-check') {
-      message = 'I would like to check my CIBIL score'
-    }
-    
-    if (message) {
-      setFormData(prev => ({ ...prev, message }))
-    }
-  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -81,100 +34,6 @@ function ContactForm() {
     }, 5000)
   }
 
-  return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl">
-      {!submitted ? (
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <h3 className="text-2xl font-bold text-[#2F4F3E] mb-6">Send Enquiry</h3>
-          
-          <div>
-            <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Full Name *</label>
-            <input
-              type="text"
-              required
-              value={formData.name}
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C]"
-              placeholder="Your name"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Phone Number *</label>
-            <input
-              type="tel"
-              required
-              value={formData.phone}
-              onChange={(e) => setFormData({...formData, phone: e.target.value})}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C]"
-              placeholder="10 digit mobile number"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Email (Optional)</label>
-            <input
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C]"
-              placeholder="your@email.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Message *</label>
-            <textarea
-              value={formData.message}
-              onChange={(e) => setFormData({...formData, message: e.target.value})}
-              rows={4}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C]"
-              placeholder="Tell us about your requirement..."
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-[#2F4F3E] text-white py-4 rounded-lg font-semibold text-lg hover:bg-[#C9A44C] hover:text-[#2F4F3E] transition-colors disabled:opacity-50"
-          >
-            {loading ? 'Sending...' : 'Send Enquiry'}
-          </button>
-        </form>
-      ) : (
-        <div className="text-center py-12">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle size={40} className="text-green-600" />
-          </div>
-          <h3 className="text-2xl font-bold text-[#2F4F3E] mb-2">Thank You!</h3>
-          <p className="text-gray-600 mb-6">We'll contact you within 2 hours.</p>
-          <div className="bg-[#F6F3E8] p-6 rounded-xl">
-            <p className="text-sm text-gray-600 mb-2">For immediate assistance:</p>
-            <a href={`tel:${process.env.NEXT_PUBLIC_PHONE}`} className="text-2xl font-bold text-[#C9A44C]">
-              +91 {process.env.NEXT_PUBLIC_PHONE}
-            </a>
-          </div>
-        </div>
-      )}
-    </div>
-  )
-}
-
-// Loading fallback
-function LoadingFallback() {
-  return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl flex items-center justify-center min-h-[500px]">
-      <div className="text-center">
-        <div className="w-16 h-16 border-4 border-[#C9A44C] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-gray-600">Loading...</p>
-      </div>
-    </div>
-  )
-}
-
-// Main page component
-export default function ContactPage() {
   return (
     <main className="bg-[#F6F3E8] min-h-screen">
       <Navbar />
@@ -245,10 +104,83 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right Side - Form with Suspense */}
-            <Suspense fallback={<LoadingFallback />}>
-              <ContactForm />
-            </Suspense>
+            {/* Right Side - Simple Form */}
+            <div className="bg-white p-8 rounded-2xl shadow-xl">
+              {!submitted ? (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <h3 className="text-2xl font-bold text-[#2F4F3E] mb-6">Send Enquiry</h3>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C]"
+                      placeholder="Your name"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Phone Number *</label>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C]"
+                      placeholder="10 digit mobile number"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Email (Optional)</label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C]"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Message *</label>
+                    <textarea
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      rows={4}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C]"
+                      placeholder="Tell us about your requirement..."
+                      required
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-[#2F4F3E] text-white py-4 rounded-lg font-semibold text-lg hover:bg-[#C9A44C] hover:text-[#2F4F3E] transition-colors disabled:opacity-50"
+                  >
+                    {loading ? 'Sending...' : 'Send Enquiry'}
+                  </button>
+                </form>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle size={40} className="text-green-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#2F4F3E] mb-2">Thank You!</h3>
+                  <p className="text-gray-600 mb-6">We'll contact you within 2 hours.</p>
+                  <div className="bg-[#F6F3E8] p-6 rounded-xl">
+                    <p className="text-sm text-gray-600 mb-2">For immediate assistance:</p>
+                    <a href={`tel:${process.env.NEXT_PUBLIC_PHONE}`} className="text-2xl font-bold text-[#C9A44C]">
+                      +91 {process.env.NEXT_PUBLIC_PHONE}
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </Container>
       </section>
