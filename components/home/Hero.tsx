@@ -161,9 +161,9 @@ export default function Hero() {
 
               <div className="space-y-6 mb-8">
                 {[
-                  { icon: Users, label: 'Happy Clients', value: '125+' },
-                  { icon: TrendingUp, label: 'Loans Sanctioned', value: '₹22Cr+' },
-                  { icon: MapPin, label: 'Projects Completed', value: '10+' },
+                  { icon: Users, label: 'Happy Clients', value: '50+' },
+                  { icon: TrendingUp, label: 'Loans Sanctioned', value: '₹5Cr+' },
+                  { icon: MapPin, label: 'Projects Completed', value: '3+' },
                 ].map((stat, i) => (
                   <motion.div 
                     key={i} 
@@ -235,3 +235,7 @@ export default function Hero() {
     </section>
   )
 }
+
+
+
+

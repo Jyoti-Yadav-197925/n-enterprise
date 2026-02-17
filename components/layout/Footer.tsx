@@ -88,7 +88,7 @@ export default function Footer() {
                 'Home Loan',
                 'Mortgage Loan',
                 'Loan Against Property',
-                'Personal Loan',
+                'Project Loan',
                 'Vehicle Loan',
                 'Construction',
                 'Property Dealing',

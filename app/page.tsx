@@ -1,15 +1,15 @@
+
+
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/home/Hero'
-import LoanServices from '@/components/home/LoanServices'
-import ConstructionServices from '@/components/home/ConstructionServices'
-import PropertyServices from '@/components/home/PropertyServices'
-import Locations from '@/components/home/Locations'
+import Stats from '@/sections/Stats'
+import GatewayTiles from '@/components/home/GatewayTiles'
+import Process from '@/sections/Process'
+import FAQSection from '@/components/home/FAQSection'
+import Testimonials from '@/sections/Testimonials'
 import ToolsSection from '@/components/home/ToolsSection'
 import ContactSection from '@/components/home/ContactSection'
-import Stats from '@/sections/Stats'
-import Process from '@/sections/Process'
-import Testimonials from '@/sections/Testimonials'
 import WhatsAppAssistant from '@/components/common/WhatsAppAssistant'
 
 export default function Home() {
@@ -18,13 +18,11 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Stats />
-      <LoanServices />
+      <GatewayTiles />
       <Process />
-      <ConstructionServices />
-      <PropertyServices />
-      <Locations />
-      <ToolsSection />
+      <FAQSection />
       <Testimonials />
+      <ToolsSection />
       <ContactSection />
       <Footer />
       <WhatsAppAssistant />

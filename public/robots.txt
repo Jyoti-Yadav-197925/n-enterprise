@@ -4,4 +4,4 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /_next/
 
-Sitemap: https://nenterprise.in/sitemap.xml
+Sitemap: https://nenterprises.in/sitemap.xml

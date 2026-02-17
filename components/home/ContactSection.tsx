@@ -85,8 +85,10 @@ export default function ContactSection() {
                 { 
                   icon: MapPin, 
                   title: 'Visit Us', 
-                  value: 'Shop No. 06, Jitesh Apt, Vishal Nagar, Vasai - (W), Palghar',
+                  value: process.env.NEXT_PUBLIC_ADDRESS,
                   subtitle: 'Mon-Sat: 10:00 AM - 9:00 PM',
+                  // For address, we don't need href, so we set it to undefined
+                  href: undefined
                 },
               ].map((item, index) => (
                 <div key={index} className="flex items-start gap-4 p-5 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow">
