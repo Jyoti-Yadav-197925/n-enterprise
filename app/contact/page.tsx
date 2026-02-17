@@ -280,7 +280,7 @@ export default function ContactPage() {
                     
                     {/* Google Maps Link - Opens with N Enterprise search */}
                     <a 
-                      href="https://www.google.com/maps/search/?api=1&query=N+Enterprise+Jitesh+Apartment+Vishal+Nagar+Vasai+West"
+                      href="https://www.google.com/maps/search/Neha+Enterprises+vasai+w/@19.3835822,72.6623774,11z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-sm text-[#C9A44C] hover:text-[#2F4F3E] transition-colors mt-3"
@@ -477,15 +477,14 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="aspect-video w-full bg-gray-200 rounded-2xl overflow-hidden shadow-xl"
           >
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.181673406482!2d72.8277426!3d19.3906674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7aec4b7c3c9a1%3A0x8c3c3f3b3c3c3c3!2sJitesh%20Apartment%2C%20Vishal%20Nagar%2C%20Vasai%20West%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60218.63351480579!2d72.78616144772838!3d19.383670406768452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7af000ea9b005%3A0x341ad8b9213abad8!2sNeha%20Enterprises!5e0!3m2!1sen!2sin!4v1771346186615!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               className="w-full h-full"
-              title="N Enterprise Location - Jitesh Apartment, Vasai West"
+              title="N Enterprise - Vasai West"
             />
           </motion.div>
 
