@@ -11,12 +11,12 @@ interface TestimonialCardProps {
   delay?: number
 }
 
-export default function TestimonialCard({ 
-  name, 
-  role, 
-  content, 
-  rating, 
-  delay = 0 
+export default function TestimonialCard({
+  name,
+  role,
+  content,
+  rating,
+  delay = 0
 }: TestimonialCardProps) {
   return (
     <motion.div
@@ -28,7 +28,7 @@ export default function TestimonialCard({
       className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 relative"
     >
       <Quote size={40} className="absolute top-6 right-6 text-accent/20" />
-      
+
       <div className="flex items-center gap-4 mb-6">
         <div className="w-16 h-16 bg-primary-dark rounded-full flex items-center justify-center text-white text-xl font-bold">
           {name.charAt(0)}

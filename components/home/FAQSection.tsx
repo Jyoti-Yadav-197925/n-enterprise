@@ -103,7 +103,7 @@ export default function FAQSection() {
             {/* Quick Stats */}
             <div className="mt-8 flex gap-6">
               <div>
-                <div className="text-2xl font-bold text-accent">50+</div>
+                <div className="text-2xl font-bold text-accent">121+</div>
                 <div className="text-xs text-gray-500">Clients Served</div>
               </div>
               <div className="w-px h-8 bg-gray-300" />

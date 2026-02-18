@@ -48,7 +48,7 @@ export default function Testimonials() {
           <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-6 leading-tight">
             What Our <span className="text-accent">Clients Say</span>
           </h2>
-          
+
           <p className="text-gray-600 max-w-2xl mx-auto">
             Real experiences from our customers across Mumbai & Palghar.
           </p>
@@ -112,12 +112,12 @@ export default function Testimonials() {
             </div>
             <div className="w-px h-8 bg-gray-300" />
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent">50+</div>
+              <div className="text-2xl font-bold text-accent">121+</div>
               <div className="text-xs text-gray-500">Happy Clients</div>
             </div>
             <div className="w-px h-8 bg-gray-300" />
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent">5+</div>
+              <div className="text-2xl font-bold text-accent">3+</div>
               <div className="text-xs text-gray-500">Years Experience</div>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function Testimonials() {
 
         {/* Share Your Story Button */}
         <div className="text-center mt-8">
-          <button 
+          <button
             onClick={() => router.push('/contact')}
             className="inline-flex items-center gap-2 bg-primary-dark text-cream px-6 py-3 rounded-full hover:bg-accent hover:text-primary-dark transition-all duration-300 text-sm font-semibold"
           >

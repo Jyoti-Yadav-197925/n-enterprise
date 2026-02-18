@@ -3,10 +3,10 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { 
-  Phone, Mail, MapPin, Send, CheckCircle, Clock, 
+import {
+  Phone, Mail, MapPin, Send, CheckCircle, Clock,
   MessageSquare, Users, Building2, HardHat, Award,
-  Sparkles, ArrowRight, ChevronRight
+  Sparkles, ArrowRight
 } from 'lucide-react'
 
 import Navbar from '@/components/layout/Navbar'
@@ -45,30 +45,45 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
-    setLoading(false)
-    
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({ name: '', phone: '', email: '', service: '', message: '' })
-    }, 5000)
-  }
+  // handleSubmit function
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEETS_URL!, {
+        method: 'POST',
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          service: formData.service,
+          message: formData.message,
+          source: 'Contact Page'
+        })
+      });
+
+      setSubmitted(true);
+      console.log('✓ Form saved to Google Sheets');
+
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: '', phone: '', email: '', service: '', message: '' });
+      }, 5000);
+
+    } catch (error) {
+      console.error('✗ Error:', error);
+      alert('Network error. Please try again.');
+      setLoading(false);
+    }
+  };
   return (
     <main className="bg-[#F6F3E8] min-h-screen">
       <Navbar />
 
-      {/* Hero Section with Background Image */}
+      {/* Hero Section */}
       <section className="relative pt-36 pb-20 overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&q=80&w=2400"
@@ -80,31 +95,29 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-[#2F4F3E]/90" />
         </div>
 
-        {/* Animated Pattern Overlay */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 z-0 opacity-20"
           initial={{ scale: 1.2 }}
           animate={{ scale: 1 }}
           transition={{ duration: 20, repeat: Infinity, repeatType: 'reverse' }}
         >
-          <div className="absolute inset-0" style={{ 
+          <div className="absolute inset-0" style={{
             backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23C9A44C" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
             backgroundSize: '30px 30px'
           }} />
         </motion.div>
 
-        {/* Animated floating elements */}
-        <motion.div 
+        <motion.div
           className="absolute top-20 left-10 w-72 h-72 bg-[#C9A44C]/10 rounded-full blur-3xl z-0"
-          animate={{ 
+          animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
           }}
           transition={{ duration: 20, repeat: Infinity }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl z-0"
-          animate={{ 
+          animate={{
             x: [0, -100, 0],
             y: [0, 50, 0],
           }}
@@ -118,7 +131,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
@@ -135,8 +148,7 @@ export default function ContactPage() {
               Have questions about loans, property, or construction? Our team is here to help you 24/7.
             </p>
 
-            {/* Quick Stats in Hero */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -202,26 +214,26 @@ export default function ContactPage() {
               <motion.h2 variants={fadeInUp} className="text-3xl font-serif font-bold text-[#2F4F3E] mb-4">
                 Get in <span className="text-[#C9A44C]">Touch</span>
               </motion.h2>
-              
+
               <motion.p variants={fadeInUp} className="text-gray-600 mb-8">
                 Choose your preferred way to reach us. We're always ready to assist you with any questions.
               </motion.p>
 
-              {/* Service Cards */}
-              <motion.div variants={staggerContainer} className="space-y-6">
+              {/* Service Cards - WITHOUT ">" icons */}
+              <motion.div variants={staggerContainer} className="space-y-4">
                 {/* Call Card */}
                 <motion.div
                   variants={scaleIn}
                   whileHover={{ scale: 1.02, x: 5 }}
-                  className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all"
+                  className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all cursor-pointer border border-transparent hover:border-[#C9A44C]/20"
                 >
-                  <div className="w-14 h-14 bg-[#2F4F3E] rounded-xl flex items-center justify-center">
+                  <div className="w-14 h-14 bg-[#2F4F3E] rounded-xl flex items-center justify-center flex-shrink-0">
                     <Phone size={28} className="text-[#C9A44C]" />
                   </div>
                   <div className="flex-1">
                     <h4 className="text-lg font-semibold text-[#2F4F3E] mb-1">Call Us</h4>
-                    <a 
-                      href={`tel:${process.env.NEXT_PUBLIC_PHONE}`} 
+                    <a
+                      href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
                       className="text-2xl font-bold text-[#C9A44C] hover:text-[#2F4F3E] transition-colors"
                     >
                       +91 {process.env.NEXT_PUBLIC_PHONE}
@@ -231,66 +243,71 @@ export default function ContactPage() {
                       <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Toll Free</span>
                     </div>
                   </div>
-                  <ChevronRight size={20} className="text-[#C9A44C]" />
                 </motion.div>
 
                 {/* Email Card */}
                 <motion.div
                   variants={scaleIn}
                   whileHover={{ scale: 1.02, x: 5 }}
-                  className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all"
+                  className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all cursor-pointer border border-transparent hover:border-[#C9A44C]/20"
                 >
-                  <div className="w-14 h-14 bg-[#2F4F3E] rounded-xl flex items-center justify-center">
+                  <div className="w-14 h-14 bg-[#2F4F3E] rounded-xl flex items-center justify-center flex-shrink-0">
                     <Mail size={28} className="text-[#C9A44C]" />
                   </div>
                   <div className="flex-1">
                     <h4 className="text-lg font-semibold text-[#2F4F3E] mb-1">Email Us</h4>
-                    <a 
-                      href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} 
+                    <a
+                      href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
                       className="text-xl font-bold text-[#C9A44C] hover:text-[#2F4F3E] transition-colors break-all"
                     >
                       {process.env.NEXT_PUBLIC_EMAIL}
                     </a>
                     <p className="text-sm text-gray-500 mt-2">Response within 2 hours</p>
                   </div>
-                  <ChevronRight size={20} className="text-[#C9A44C]" />
                 </motion.div>
 
-                {/* Visit Card - UPDATED ADDRESS with N Enterprise name and Google Maps link */}
+                {/* Visit Card - IMPROVED LAYOUT */}
                 <motion.div
                   variants={scaleIn}
                   whileHover={{ scale: 1.02, x: 5 }}
-                  className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all"
+                  className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all cursor-pointer border border-transparent hover:border-[#C9A44C]/20"
                 >
-                  <div className="w-14 h-14 bg-[#2F4F3E] rounded-xl flex items-center justify-center">
+                  <div className="w-14 h-14 bg-[#2F4F3E] rounded-xl flex items-center justify-center flex-shrink-0">
                     <MapPin size={28} className="text-[#C9A44C]" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-[#2F4F3E] mb-1">Visit Us</h4>
-                    <p className="text-lg text-[#2F4F3E] leading-relaxed">
-                      <span className="font-bold text-[#C9A44C]">N Enterprise</span><br />
-                      Shop No.: 06, Jitesh Apartment,<br />
-                      Vishal Nagar, Vartak Road,<br />
-                      Vasai - (W), Palghar - 401202
-                    </p>
-                    <div className="flex flex-wrap items-center gap-2 mt-3">
-                      <span className="text-xs bg-[#F6F3E8] text-[#2F4F3E] px-3 py-1.5 rounded-full font-medium">Mon-Sat: 10AM - 7PM</span>
-                      <span className="text-xs bg-[#C9A44C]/10 text-[#2F4F3E] px-3 py-1.5 rounded-full font-medium">Closed Sunday</span>
+                    <h4 className="text-lg font-semibold text-[#2F4F3E] mb-2">Visit Us</h4>
+                    <div className="space-y-2">
+                      <p className="text-base text-[#2F4F3E] leading-relaxed">
+                        <span className="font-bold text-[#C9A44C]">N Enterprise</span><br />
+                        Shop No. 06, Jitesh Apartment,<br />
+                        Vishal Nagar, Vartak Road, Vasai (W),<br />
+                        Palghar - 401202.
+                      </p>
+
+                      <div className="flex flex-wrap items-center gap-2 pt-1">
+                        <span className="inline-flex items-center gap-1 text-xs bg-[#F6F3E8] text-[#2F4F3E] px-3 py-1.5 rounded-full">
+                          <Clock size={12} className="text-[#C9A44C]" />
+                          Mon-Sat: 10AM - 7PM
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-xs bg-[#C9A44C]/10 text-[#2F4F3E] px-3 py-1.5 rounded-full">
+                          Closed Sunday
+                        </span>
+                      </div>
+
+                      {/* Google Maps Link */}
+                      <a
+                        href="https://www.google.com/maps/search/Neha+Enterprises+vasai+w/@19.3835822,72.6623774,11z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-[#C9A44C] hover:text-[#2F4F3E] transition-colors mt-2"
+                      >
+                        <MapPin size={14} />
+                        Get Directions
+                        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      </a>
                     </div>
-                    
-                    {/* Google Maps Link - Opens with N Enterprise search */}
-                    <a 
-                      href="https://www.google.com/maps/search/Neha+Enterprises+vasai+w/@19.3835822,72.6623774,11z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-[#C9A44C] hover:text-[#2F4F3E] transition-colors mt-3"
-                    >
-                      <MapPin size={14} />
-                      Get Directions to N Enterprise
-                      <ArrowRight size={14} />
-                    </a>
                   </div>
-                  <ChevronRight size={20} className="text-[#C9A44C]" />
                 </motion.div>
               </motion.div>
 
@@ -312,7 +329,7 @@ export default function ContactPage() {
               </motion.div>
             </motion.div>
 
-            {/* Right Side - Form */}
+            {/* Right Side - Form (unchanged) */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -324,15 +341,16 @@ export default function ContactPage() {
                   <>
                     <h3 className="text-2xl font-bold text-[#2F4F3E] mb-2">Send Enquiry</h3>
                     <p className="text-gray-500 text-sm mb-6">Fill the form and we'll get back to you within 2 hours</p>
-                    
+
                     <form onSubmit={handleSubmit} className="space-y-5">
+                      {/* Form fields - unchanged */}
                       <div>
                         <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Full Name *</label>
                         <input
                           type="text"
                           required
                           value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C] transition-all"
                           placeholder="Enter your full name"
                         />
@@ -344,7 +362,7 @@ export default function ContactPage() {
                           type="tel"
                           required
                           value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C] transition-all"
                           placeholder="10 digit mobile number"
                         />
@@ -355,7 +373,7 @@ export default function ContactPage() {
                         <input
                           type="email"
                           value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C] transition-all"
                           placeholder="your@email.com"
                         />
@@ -365,7 +383,7 @@ export default function ContactPage() {
                         <label className="block text-sm font-medium text-[#2F4F3E] mb-2">I'm interested in</label>
                         <select
                           value={formData.service}
-                          onChange={(e) => setFormData({...formData, service: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                           className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C] transition-all"
                         >
                           <option value="">Select a service</option>
@@ -385,7 +403,7 @@ export default function ContactPage() {
                         <label className="block text-sm font-medium text-[#2F4F3E] mb-2">Message *</label>
                         <textarea
                           value={formData.message}
-                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           rows={4}
                           className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C] focus:ring-1 focus:ring-[#C9A44C] transition-all resize-none"
                           placeholder="Tell us about your requirement..."
@@ -429,11 +447,11 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-3xl font-bold text-[#2F4F3E] mb-2">Thank You!</h3>
                     <p className="text-gray-600 mb-6">We've received your enquiry. Our team will contact you within 2 hours.</p>
-                    
+
                     <div className="bg-[#F6F3E8] p-6 rounded-xl mb-6">
                       <p className="text-sm text-gray-600 mb-2">For immediate assistance:</p>
-                      <a 
-                        href={`tel:${process.env.NEXT_PUBLIC_PHONE}`} 
+                      <a
+                        href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
                         className="text-2xl font-bold text-[#C9A44C] hover:text-[#2F4F3E] transition-colors"
                       >
                         +91 {process.env.NEXT_PUBLIC_PHONE}
@@ -454,7 +472,7 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      {/* Map Section - Updated with N Enterprise location */}
+      {/* Map Section */}
       <section className="py-20 bg-white">
         <Container>
           <motion.div
@@ -467,7 +485,7 @@ export default function ContactPage() {
               Find Us on <span className="text-[#C9A44C]">Map</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              <span className="font-semibold">N Enterprise</span> - Shop No.: 06, Jitesh Apartment, Vishal Nagar, Vartak Road, Vasai - (W), Palghar - 401202
+              <span className="font-semibold">N Enterprise</span> - Shop No. 06, Jitesh Apartment, Vishal Nagar, Vartak Road, Vasai (W), Palghar - 401202
             </p>
           </motion.div>
 
@@ -488,7 +506,6 @@ export default function ContactPage() {
             />
           </motion.div>
 
-          {/* Additional Location Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

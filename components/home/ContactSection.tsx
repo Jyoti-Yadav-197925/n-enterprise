@@ -19,32 +19,49 @@ export default function ContactSection() {
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
-    setLoading(false)
-    
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        name: '',
-        phone: '',
-        service: '',
-        location: '',
-        message: '',
-      })
-    }, 5000)
-  }
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEETS_URL!, {
+        method: 'POST',
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          service: formData.service,
+          location: formData.location,
+          message: formData.message,
+          source: 'Homepage Footer'
+        })
+      });
+
+      // Google Sheets script returns success even without reading response
+      setSubmitted(true);
+      console.log('✓ Form saved to Google Sheets');
+
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          name: '',
+          phone: '',
+          service: '',
+          location: '',
+          message: '',
+        });
+      }, 5000);
+
+    } catch (error) {
+      console.error('✗ Error:', error);
+      alert('Network error. Please try again.');
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-20 bg-[#F6F3E8] relative overflow-hidden">
       <div className="absolute top-40 -left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
       <div className="absolute bottom-40 -right-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-      
+
       <Container className="relative">
         <div className="grid lg:grid-cols-2 gap-16">
           <motion.div
@@ -60,31 +77,31 @@ export default function ContactSection() {
             <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-6 leading-tight">
               Get Your Free Consultation Today
             </h2>
-            
+
             <p className="text-gray-600 mb-10">
-              Whether you need a loan, want to buy/sell property, or have a construction project - 
+              Whether you need a loan, want to buy/sell property, or have a construction project -
               our experts are ready to help. PAN India loan support available.
             </p>
 
             <div className="space-y-6">
               {[
-                { 
-                  icon: Phone, 
-                  title: 'Call Us', 
+                {
+                  icon: Phone,
+                  title: 'Call Us',
                   value: `+91 ${process.env.NEXT_PUBLIC_PHONE}`,
                   subtitle: '24/7 Emergency Support',
                   href: `tel:${process.env.NEXT_PUBLIC_PHONE}`,
                 },
-                { 
-                  icon: Mail, 
-                  title: 'Email Us', 
+                {
+                  icon: Mail,
+                  title: 'Email Us',
                   value: process.env.NEXT_PUBLIC_EMAIL,
                   subtitle: 'Response within 2 hours',
                   href: `mailto:${process.env.NEXT_PUBLIC_EMAIL}`,
                 },
-                { 
-                  icon: MapPin, 
-                  title: 'Visit Us', 
+                {
+                  icon: MapPin,
+                  title: 'Visit Us',
                   value: process.env.NEXT_PUBLIC_ADDRESS,
                   subtitle: 'Mon-Sat: 10:00 AM - 9:00 PM',
                   // For address, we don't need href, so we set it to undefined

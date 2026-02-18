@@ -101,12 +101,12 @@ export default function Process() {
             </div>
             <div className="w-px h-10 bg-gray-300" />
             <div>
-              <div className="text-4xl font-bold text-accent">50+</div>
+              <div className="text-4xl font-bold text-accent">121+</div>
               <div className="text-sm text-gray-600">Happy Clients</div>
             </div>
             <div className="w-px h-10 bg-gray-300" />
             <div>
-              <div className="text-4xl font-bold text-accent">5+</div>
+              <div className="text-4xl font-bold text-accent">3+</div>
               <div className="text-sm text-gray-600">Years Experience</div>
             </div>
           </div>
