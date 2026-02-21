@@ -102,7 +102,7 @@ export const metadata: Metadata = {
     siteName: 'N Enterprise',
     images: [
       {
-        url: 'https://www.nenterprises.in/og-image.jpg', 
+        url: 'https://www.nenterprises.in/images/og-image.jpg', 
         width: 1200,
         height: 630,
         alt: 'N Enterprise - Your Trusted Partner',
@@ -115,7 +115,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'N Enterprise - Loan, Property & Construction Experts',
     description: 'Expert loan assistance, property dealing, and construction redevelopment services across Mumbai.',
-    images: ['https://www.nenterprises.in/twitter-image.jpg'], 
+    images: ['https://www.nenterprises.in/images/twitter-image.jpg'], 
   },
   robots: {
     index: true,
@@ -155,7 +155,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "N Enterprise",
-              "image": "https://www.nenterprises.in/og-image.jpg",
+              "image": "https://www.nenterprises.in/images/og-image.jpg",
               "@id": "https://www.nenterprises.in",
               "url": "https://www.nenterprises.in",
               "telephone": "+91 9156213334",
@@ -182,8 +182,8 @@ export default function RootLayout({
                 }
               ],
               "sameAs": [
-                "https://www.facebook.com/nenterprise",
-                "https://www.instagram.com/nenterprise"
+                "https://www.facebook.com/nenterprises",
+                "https://www.instagram.com/nenterprises"
               ],
               "description": "Expert loan assistance, property dealing, and construction redevelopment services across Mumbai, Vasai, Virar, Boisar & Palghar.",
               "areaServed": [
