@@ -1,5 +1,5 @@
 'use client'
-
+import { Metadata } from 'next'
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,6 +13,18 @@ import {
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Container from '@/components/common/Container';
+
+
+export const metadata: Metadata = {
+  title: 'Construction Company Mumbai | Redevelopment & Stalled Projects',
+  description: 'Expert construction services in Mumbai for society redevelopment, stalled project completion, and new construction. 70:30, 65:35 models available.',
+  keywords: 'construction company Mumbai, society redevelopment, stalled project completion, building contractor Vasai, redevelopment models 70:30',
+  openGraph: {
+    title: 'Construction & Redevelopment | N Enterprise Mumbai',
+    description: 'Expert construction services for redevelopment, stalled projects, and new construction across Mumbai & Palghar.',
+  }
+}
+
 
 // Animation variants
 const fadeInUp = {

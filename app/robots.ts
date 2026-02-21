@@ -1,3 +1,4 @@
+// app/robots.ts
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/', '/_next/'],
     },
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://nenterprise.in'}/sitemap.xml`,
+    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://nenterprises.in'}/sitemap.xml`,
   }
 }

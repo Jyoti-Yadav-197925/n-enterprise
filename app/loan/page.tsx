@@ -1,10 +1,11 @@
 'use client'
 
+import { Metadata } from 'next'
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { 
+import {
   Home, Briefcase, Building2, Landmark, TrendingUp,
   Clock, Shield, CheckCircle, FileText, IndianRupee,
   Users, CreditCard, Wallet, Calculator, Percent, Scale,
@@ -12,12 +13,21 @@ import {
   BookOpen, Target, TrendingDown, HeartHandshake, Banknote,
   PieChart, BadgeCheck, Zap, Heart, Star
 } from 'lucide-react';
-
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Container from '@/components/common/Container';
 import DocumentChecklist from '@/components/tools/DocumentChecklist';
 import RateCompare from '@/components/tools/RateCompare';
+
+export const metadata: Metadata = {
+  title: 'Loan Assistance | Home, Business, Project Loans Mumbai',
+  description: 'Get expert loan assistance in Mumbai for home loans, business loans, loan against property, and project loans. PAN India support. Lowest interest rates, quick approval.',
+  keywords: 'home loan Mumbai, business loan Vasai, loan against property, project finance, construction loan, mortgage loan',
+  openGraph: {
+    title: 'Loan Assistance | N Enterprise Mumbai',
+    description: 'Expert loan assistance for home, business, and project loans across Mumbai & Palghar.',
+  }
+}
 
 // Animation variants
 const fadeInUp = {
@@ -206,11 +216,11 @@ const LoanProducts = () => {
             <Sparkles size={14} className="text-[#C9A44C]" />
             <span className="text-xs font-semibold tracking-wide">LOAN PRODUCTS</span>
           </motion.div>
-          
+
           <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-serif font-bold text-[#2F4F3E] mb-4">
             Choose Your <span className="text-[#C9A44C]">Loan</span>
           </motion.h2>
-          
+
           <motion.p variants={fadeInUp} className="text-gray-600 max-w-2xl mx-auto">
             Tailored financial solutions designed to meet your specific needs
           </motion.p>
@@ -239,9 +249,8 @@ const LoanProducts = () => {
                 }}
                 transition={{ duration: 0.6 }}
                 style={{ backfaceVisibility: 'hidden' }}
-                className={`absolute inset-0 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 ${
-                  hoveredId === product.id ? 'pointer-events-none' : ''
-                }`}
+                className={`absolute inset-0 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 ${hoveredId === product.id ? 'pointer-events-none' : ''
+                  }`}
               >
                 <div className="p-6 h-full flex flex-col">
                   {/* Header with Icon and Rate */}
@@ -309,7 +318,7 @@ const LoanProducts = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Link 
+                      <Link
                         href={`/contact?service=${product.id}`}
                         className="bg-[#2F4F3E] text-white px-4 py-2 rounded-lg hover:bg-[#C9A44C] hover:text-[#2F4F3E] transition-colors text-sm font-medium flex items-center gap-2"
                       >
@@ -320,76 +329,75 @@ const LoanProducts = () => {
                 </div>
               </motion.div>
 
-           {/* Back Card - Hover Details - Larger & Spacious */}
+              {/* Back Card - Hover Details - Larger & Spacious */}
 
-<motion.div
-  animate={{
-    rotateY: hoveredId === product.id ? 0 : -180,
-    opacity: hoveredId === product.id ? 1 : 0
-  }}
-  transition={{ duration: 0.6 }}
-  style={{ backfaceVisibility: 'hidden' }}
-  className={`absolute inset-0 bg-[#2F4F3E] text-white rounded-2xl shadow-2xl overflow-hidden p-8 flex flex-col ${
-    hoveredId === product.id ? '' : 'pointer-events-none'
-  }`}
->
-  {/* Simple Background Pattern */}
-  <div className="absolute inset-0 opacity-5">
-    <div className="absolute inset-0" style={{ 
-      backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23C9A44C" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-      backgroundSize: '30px 30px'
-    }} />
-  </div>
+              <motion.div
+                animate={{
+                  rotateY: hoveredId === product.id ? 0 : -180,
+                  opacity: hoveredId === product.id ? 1 : 0
+                }}
+                transition={{ duration: 0.6 }}
+                style={{ backfaceVisibility: 'hidden' }}
+                className={`absolute inset-0 bg-[#2F4F3E] text-white rounded-2xl shadow-2xl overflow-hidden p-8 flex flex-col ${hoveredId === product.id ? '' : 'pointer-events-none'
+                  }`}
+              >
+                {/* Simple Background Pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23C9A44C" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+                    backgroundSize: '30px 30px'
+                  }} />
+                </div>
 
-  <div className="relative z-10 h-full flex flex-col">
-    {/* Simple Header */}
-    <div className="mb-6">
-      <h3 className="text-2xl font-bold mb-1">{product.title}</h3>
-      <p className="text-[#C9A44C] font-semibold">{product.rate} • {product.tenure}</p>
-    </div>
+                <div className="relative z-10 h-full flex flex-col">
+                  {/* Simple Header */}
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold mb-1">{product.title}</h3>
+                    <p className="text-[#C9A44C] font-semibold">{product.rate} • {product.tenure}</p>
+                  </div>
 
-    {/* Short Description */}
-    <p className="text-white/80 text-sm mb-6 leading-relaxed">{product.longDescription.substring(0, 100)}...</p>
+                  {/* Short Description */}
+                  <p className="text-white/80 text-sm mb-6 leading-relaxed">{product.longDescription.substring(0, 100)}...</p>
 
-    {/* Key Details - Just 4 simple ones */}
-    <div className="grid grid-cols-2 gap-4 mb-8">
-      <div className="bg-white/10 p-4 rounded-xl">
-        <Banknote size={20} className="text-[#C9A44C] mb-2" />
-        <div className="text-xs text-white/60">Interest</div>
-        <div className="font-bold text-lg">{product.rate}</div>
-      </div>
-      <div className="bg-white/10 p-4 rounded-xl">
-        <Clock size={20} className="text-[#C9A44C] mb-2" />
-        <div className="text-xs text-white/60">Processing</div>
-        <div className="font-bold text-lg">{product.hoverDetails[1].value}</div>
-      </div>
-      <div className="bg-white/10 p-4 rounded-xl">
-        <BadgeCheck size={20} className="text-[#C9A44C] mb-2" />
-        <div className="text-xs text-white/60">CIBIL</div>
-        <div className="font-bold text-lg">{product.cibil}</div>
-      </div>
-      <div className="bg-white/10 p-4 rounded-xl">
-        <PieChart size={20} className="text-[#C9A44C] mb-2" />
-        <div className="text-xs text-white/60">Max Amount</div>
-        <div className="font-bold text-lg">{product.amount}</div>
-      </div>
-    </div>
+                  {/* Key Details - Just 4 simple ones */}
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    <div className="bg-white/10 p-4 rounded-xl">
+                      <Banknote size={20} className="text-[#C9A44C] mb-2" />
+                      <div className="text-xs text-white/60">Interest</div>
+                      <div className="font-bold text-lg">{product.rate}</div>
+                    </div>
+                    <div className="bg-white/10 p-4 rounded-xl">
+                      <Clock size={20} className="text-[#C9A44C] mb-2" />
+                      <div className="text-xs text-white/60">Processing</div>
+                      <div className="font-bold text-lg">{product.hoverDetails[1].value}</div>
+                    </div>
+                    <div className="bg-white/10 p-4 rounded-xl">
+                      <BadgeCheck size={20} className="text-[#C9A44C] mb-2" />
+                      <div className="text-xs text-white/60">CIBIL</div>
+                      <div className="font-bold text-lg">{product.cibil}</div>
+                    </div>
+                    <div className="bg-white/10 p-4 rounded-xl">
+                      <PieChart size={20} className="text-[#C9A44C] mb-2" />
+                      <div className="text-xs text-white/60">Max Amount</div>
+                      <div className="font-bold text-lg">{product.amount}</div>
+                    </div>
+                  </div>
 
-    {/* Simple CTA */}
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className="mt-auto"
-    >
-      <Link
-        href={`/contact?service=${product.id}`}
-        className="block w-full bg-[#C9A44C] text-[#2F4F3E] py-4 rounded-xl font-bold text-center"
-      >
-        Apply Now
-      </Link>
-    </motion.div>
-  </div>
-</motion.div>
+                  {/* Simple CTA */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="mt-auto"
+                  >
+                    <Link
+                      href={`/contact?service=${product.id}`}
+                      className="block w-full bg-[#C9A44C] text-[#2F4F3E] py-4 rounded-xl font-bold text-center"
+                    >
+                      Apply Now
+                    </Link>
+                  </motion.div>
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
@@ -481,15 +489,15 @@ const CibilSection = () => {
               <TrendingUp size={14} className="text-[#C9A44C]" />
               <span className="text-xs font-semibold tracking-wide">CREDIT HEALTH</span>
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2F4F3E] mb-4">
               Check Your <span className="text-[#C9A44C]">CIBIL Score</span>
             </h2>
-            
+
             <p className="text-gray-600 mb-8">
               Your credit score determines loan eligibility and interest rates. Get a free check and expert advice.
             </p>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <motion.div
                 whileHover={{ y: -5 }}
@@ -521,7 +529,7 @@ const CibilSection = () => {
               </motion.div>
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -530,19 +538,19 @@ const CibilSection = () => {
           >
             <h3 className="text-xl font-bold text-[#2F4F3E] mb-4">Free Consultation</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder="Your Name"
                 value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C]"
                 required
               />
-              <input 
-                type="tel" 
+              <input
+                type="tel"
                 placeholder="Phone Number"
                 value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#C9A44C]"
                 required
               />
@@ -585,7 +593,7 @@ export default function LoanPage() {
           <div className="absolute inset-0 bg-[#2F4F3E]/90" />
         </div>
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{ 
+          <div className="absolute inset-0" style={{
             backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23C9A44C" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
             backgroundSize: '30px 30px'
           }} />

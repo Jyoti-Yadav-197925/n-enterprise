@@ -13,10 +13,10 @@ import DocumentChecklist from '@/components/tools/DocumentChecklist';
 import EligibilityChecker from '@/components/tools/EligibilityChecker';
 
 export const metadata: Metadata = {
-  title: 'Financial Tools | N-Enterprise',
-  description: 'EMI Calculator, Interest Rate Compare, Document Checklist, and Loan Eligibility Checker.',
+  title: 'Financial Tools | EMI Calculator, Rate Compare & Loan Eligibility',
+  description: 'Free financial tools: EMI calculator, interest rate comparison, loan eligibility checker, and document checklist for home loans, business loans, and more.',
+  keywords: 'EMI calculator, loan eligibility checker, interest rate compare, home loan calculator, business loan eligibility, document checklist',
 };
-
 export default function ToolsPage() {
   return (
     <main className="bg-[#F6F3E8] min-h-screen">

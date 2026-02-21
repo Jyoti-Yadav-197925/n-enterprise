@@ -1,5 +1,5 @@
 'use client'
-
+import { Metadata } from 'next'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -12,6 +12,13 @@ import {
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Container from '@/components/common/Container'
+
+export const metadata: Metadata = {
+  title: 'Contact N Enterprise | Loan, Property & Construction Experts',
+  description: 'Get in touch with N Enterprise for expert loan assistance, property dealing, and construction services in Mumbai. Free consultation. 24/7 support.',
+  keywords: 'contact N Enterprise, loan expert Mumbai, property consultant Vasai, construction contractor Palghar',
+}
+
 
 // Animation variants
 const fadeInUp = {

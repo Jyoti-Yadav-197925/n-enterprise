@@ -1,5 +1,6 @@
 'use client'
 
+import { Metadata } from 'next'
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,6 +10,17 @@ import { MapPin, Home, Building2, ArrowRight, Award, Calendar, Users, Ruler, Bed
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Container from '@/components/common/Container';
+
+
+export const metadata: Metadata = {
+  title: 'Property Dealers in Mumbai | Buy, Sell, Rent Properties',
+  description: 'Find best properties in Mumbai, Vasai, Virar, Boisar & Palghar. Residential flats, commercial shops, land. Expert property dealers with transparent dealing.',
+  keywords: 'property dealers Mumbai, real estate Vasai, buy flat Virar, sell property Boisar, rent commercial space Palghar',
+  openGraph: {
+    title: 'Property Dealers | N Enterprise Mumbai',
+    description: 'Expert property dealers in Mumbai & Palghar for buying, selling, and renting residential & commercial properties.',
+  }
+}
 
 // Property data (simplified for brevity)
 const allProperties = [
