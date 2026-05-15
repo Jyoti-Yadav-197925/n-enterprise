@@ -87,9 +87,9 @@ const InterestRateCompare = () => {
     },
     { 
       name: 'N Enterprise', 
-      home: '7.5%', 
+      home: '7.0%', 
       business: '10%', 
-      lap: '9.5%', 
+      lap: '9.0%', 
       project: '10%',
       isBest: true, 
       logo: '⭐' 
