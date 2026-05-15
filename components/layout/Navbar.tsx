@@ -332,7 +332,7 @@ export default function Navbar() {
                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#C9A44C] rounded-full animate-pulse" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-bold text-[#2F4F3E] leading-tight">N ENTERPRISE</span>
+                <span className="text-sm font-bold text-[#2F4F3E] leading-tight">N ENTERPRISES</span>
                 <span className="text-[8px] tracking-wider text-[#4F6F52]/70 uppercase">Since 2008</span>
               </div>
             </div>

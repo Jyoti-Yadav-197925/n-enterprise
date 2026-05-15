@@ -29,7 +29,7 @@ export default function Hero() {
       >
         <Image
           src="/images/hero.jpg"
-           alt="N Enterprise - Expert Loan, Property & Construction Services in Mumbai"
+           alt="N Enterprises - Expert Loan, Property & Construction Services in Mumbai"
           fill
           priority
           className="object-cover"
